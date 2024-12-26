@@ -1,6 +1,6 @@
 package io.hhplus.lecture.interfaces.api.lectureEnrollment.dto;
 
-public record LectureEnrollmentDto(
+public record LectureEnrollmentRequest(
     Long userId,
     Long lectureId
 ) {

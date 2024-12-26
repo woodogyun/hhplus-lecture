@@ -6,6 +6,7 @@ import io.hhplus.lecture.domain.lectureEnrollment.entity.LectureEnrollment;
 import io.hhplus.lecture.domain.lectureEnrollment.repository.LectureEnrollmentRepository;
 import io.hhplus.lecture.domain.lectureSchedule.entity.LectureSchedule;
 import io.hhplus.lecture.domain.lectureSchedule.repository.LectureScheduleRepository;
+import io.hhplus.lecture.interfaces.api.lectureEnrollment.dto.LectureEnrollmentResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -18,7 +19,7 @@ public class LectureEnrollmentService {
     private final LectureEnrollmentRepository enrollmentRepository;
 
     @Transactional
-    public LectureEnrollment addEnrollment(Long userId, Long lectureId) {
+    public LectureEnrollmentResponse addEnrollment(Long userId, Long lectureId) {
         // 1. 강의 스케줄 조회
         LectureSchedule lectureSchedule = scheduleRepository.findByLectureIdWithLock(lectureId);
         log.info("lectureId: {}", lectureId);
@@ -37,7 +38,10 @@ public class LectureEnrollmentService {
                             .build();
 
         // 4. 유저가 신청 강의 저장
-        return enrollmentRepository.save(lectureEnrollment);
+        enrollmentRepository.save(lectureEnrollment);
+
+        // TODO - user.id, lecture.id  -> user.name 과 lecture.name 으로 변경 필요
+        return new LectureEnrollmentResponse(userId, lectureId);
     }
     
 }
