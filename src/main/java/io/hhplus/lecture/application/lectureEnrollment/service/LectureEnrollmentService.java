@@ -1,5 +1,6 @@
 package io.hhplus.lecture.application.lectureEnrollment.service;
 
+import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import io.hhplus.lecture.domain.lectureEnrollment.entity.LectureEnrollment;
@@ -7,6 +8,7 @@ import io.hhplus.lecture.domain.lectureEnrollment.repository.LectureEnrollmentRe
 import io.hhplus.lecture.domain.lectureSchedule.entity.LectureSchedule;
 import io.hhplus.lecture.domain.lectureSchedule.repository.LectureScheduleRepository;
 import io.hhplus.lecture.interfaces.api.lectureEnrollment.dto.LectureEnrollmentResponse;
+import io.hhplus.lecture.interfaces.api.lectureEnrollment.dto.UserEnrollResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -43,5 +45,8 @@ public class LectureEnrollmentService {
         // TODO - user.id, lecture.id  -> user.name 과 lecture.name 으로 변경 필요
         return new LectureEnrollmentResponse(userId, lectureId);
     }
-    
+
+    public List<UserEnrollResponse> getEnrollByUserId(Long userId) {
+        return enrollmentRepository.findEnrollByUserId(userId);
+    }
 }
