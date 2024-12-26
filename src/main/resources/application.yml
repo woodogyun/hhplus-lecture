@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: lecture
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/special_lecture
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: DBeaver
+    password: qwe123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
