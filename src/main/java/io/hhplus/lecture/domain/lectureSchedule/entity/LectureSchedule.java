@@ -24,8 +24,11 @@ public class LectureSchedule {
     @Column(name = "lecture_id", nullable = false)
     private Long lectureId;
 
-    @Column(name = "startDate", nullable = false)
+    @Column(name = "start_date", nullable = false)
     private LocalDateTime startDate;
+
+    @Column(name = "end_date", nullable = false)
+    private LocalDateTime endDate;
 
     @Column(name = "max_count", nullable = false)
     private int maxCount;
